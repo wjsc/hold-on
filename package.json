@@ -1,17 +1,35 @@
 {
-  "name": "hold",
+  "name": "hold-on",
   "version": "1.0.0",
-  "description": "",
+  "description": "Returns a function execution result or a cached version of it",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test"
+    "test": "nyc mocha ./test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wjsc/hold-on"
+  },
+  "keywords": [
+    "cache",
+    "memory",
+    "buffer",
+    "in-memory",
+    "performance",
+    "optimization"
+  ],
   "author": "wjsc",
-  "license": "ISC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wjsc/hold-on/issues"
+  },
+  "homepage": "https://github.com/wjsc/hold-on#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
-    "proxyquire": "^2.1.1",
     "sinon": "^7.3.2"
+  },
+  "dependencies": {
+    "nyc": "^14.1.1"
   }
 }

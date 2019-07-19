@@ -12,4 +12,4 @@ const hold = (operation, ms) => {
     };
 };
 
-module.exports = { hold };
+module.exports = hold;
