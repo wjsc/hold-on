@@ -1,11 +1,12 @@
 const hold = (operation, ms) => {
     const symbol = Symbol();
     let value = symbol;
-    return () => {
+    return function x(){
         if(value === symbol) {
             value = operation();
-            setTimeout(() => {
+            x.interval = setTimeout(() => {
                 value = symbol;
+                delete x.interval;
             }, ms);
         }
         return value;

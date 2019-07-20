@@ -2,7 +2,7 @@ const sinon = require('sinon');
 const chai = require('chai');
 const hold = require('../index');
 
-describe('Hold On - Tests', () => {
+describe('Hold On - Execution Tests', () => {
     it('One operation and one call | result', () => {
         const operation = sinon.stub().returns(50);
         const cachedOperation = hold(operation, 1);
@@ -19,15 +19,17 @@ describe('Hold On - Tests', () => {
 
     it('One operation and one call with long cache time | result', () => {
         const operation = sinon.stub().returns(5000);
-        const cachedOperation = hold(operation, 1000);
+        const cachedOperation = hold(operation, 10000000);
         chai.expect(cachedOperation()).to.eql(5000);
+        clearInterval(cachedOperation.interval);
     });
 
     it('One operation and one call  with long cache time | call count', () => {
         const operation = sinon.fake();
-        const cachedOperation = hold(operation, 1000);
+        const cachedOperation = hold(operation, 10000000);
         cachedOperation();
         chai.expect(operation.callCount).to.eql(1);
+        clearInterval(cachedOperation.interval);
     });
 
     it('One operation with many calls | result', () => {
@@ -206,5 +208,34 @@ describe('Hold On - Tests', () => {
         cachedOperationB();
         chai.expect(operationA.callCount).to.eql(3);
         chai.expect(operationB.callCount).to.eql(2);
+    });
+
+});
+
+describe('Hold On - Interval Managment Tests', () => {
+    it('Does not exposes an interval when it was not invoked', () => {
+        const operation = sinon.fake();
+        const cachedOperation = hold(operation, 1);
+        chai.expect(typeof cachedOperation.interval ).to.eql('undefined');
+    });
+
+    it('Exposes an interval', () => {
+        const operation = sinon.fake();
+        const cachedOperation = hold(operation, 1);
+        cachedOperation();
+        chai.expect(typeof cachedOperation.interval ).to.eql('object');
+        chai.expect(typeof cachedOperation.interval.id ).to.eql('number');
+        chai.expect(typeof cachedOperation.interval.ref ).to.eql('function');
+        chai.expect(typeof cachedOperation.interval.unref ).to.eql('function');
+        chai.expect(typeof cachedOperation.interval.refresh ).to.eql('function');
+    });
+
+    it('Does not exposes an interval when cache was expired', () => {
+        const operation = sinon.fake();
+        const cachedOperation = hold(operation, 100);
+        const clock = sinon.useFakeTimers();
+        cachedOperation();
+        clock.tick(100);
+        chai.expect(typeof cachedOperation.interval ).to.eql('undefined');
     });
 })

@@ -27,4 +27,13 @@ const hold = require('hold-on');
 
 ```
 
-https://www.youtube.com/watch?v=WPnOEiehONQ
+## 100% Tested Library
+
+Check this: https://github.com/wjsc/hold-on/blob/master/test/index.test.js
+
+## Tiny size
+
+Less than 20 lines of code and no dependencies
+
+
+Package name reference: https://www.youtube.com/watch?v=WPnOEiehONQ
