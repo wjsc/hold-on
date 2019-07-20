@@ -26,9 +26,9 @@ It stores in memory the result of your function for immediate access, and clears
 It returns a function that can be used instead your original one.
 
 ```
-const hold = require('hold-on');
-const myCachedFunction = hold(<Your Function>, <Time in miliseconds>);
-myCachedFunction();
+const hold = require('@wjsc/hold-on');
+const myOptimizedFunction = hold(<Your Function>, <Time in miliseconds>);
+myOptimizedFunction();
 ```
 
 ## Usage
@@ -36,33 +36,33 @@ myCachedFunction();
 #### 1. First example
 
 ```
-const hold = require('hold-on');
+const hold = require('@wjsc/hold-on');
 
 // Define your costly function: Let's supose it's so heavy!
 const myFunction = () => new Date(); 
 
-// Make a cached version of your function with 500 ms cache
-const myCachedFunction = hold(myFunction, 500);
+// Make a new version of your function with 500 ms cache
+const myOptimizedFunction = hold(myFunction, 500);
 
 // This code will execute new Date() only once
 for(let i = 0; i<50; i++){
     // And it prints always the same date
-    console.log(myCachedFunction());
+    console.log(myOptimizedFunction());
 }
 ```
 
 #### 2. Second example: Retrieving a remote resource
 
 ```
-const hold = require('hold-on');
+const hold = require('@wjsc/hold-on');
 const fetch = require('node-fetch); // Or any HTTP client
 
 const myFunction = () => fetch('https://httpstat.us/200');
-const myCachedFunction = hold(myFunction, 5000);
+const myOptimizedFunction = hold(myFunction, 5000);
 
 // This code will execute the HTTP GET only once
 for(let i = 0; i<50; i++){
-    console.log(myCachedFunction());
+    console.log(myOptimizedFunction());
 }
 // After 500 ms the request will be executed again
 
@@ -71,12 +71,12 @@ for(let i = 0; i<50; i++){
 #### 3. Third example: It's also great to retrieve a file from a remote Storage such as S3
 
 ```
-const hold = require('hold-on');
+const hold = require('@wjsc/hold-on');
 const aws = require('aws-sdk');
 const s3 = new aws.S3();
 
 const myFunction = s3.getObject({ Bucket: 'abc', Key: 'abc.txt' });
-const myCachedFunction = hold(myFunction, 20000);
+const myOptimizedFunction = hold(myFunction, 20000);
 
 ```
 
@@ -99,13 +99,13 @@ This can be usefull if you are running a script that doesn't end at desired time
 
 ```
 const myFunction = () => {};
-const myCachedFunction = hold(myFunction, 100000000);
-clearInterval(myCachedFunction.interval);
+const myOptimizedFunction = hold(myFunction, 100000000);
+clearInterval(myOptimizedFunction.interval);
 ```
 
 #### How to clear the memory cache
 
-Just use the original function!
+Just use the original function, or create a new function version.
 
 
 Package name reference: https://www.youtube.com/watch?v=WPnOEiehONQ
