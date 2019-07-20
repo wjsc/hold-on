@@ -55,16 +55,20 @@ for(let i = 0; i<50; i++){
 
 ```
 const hold = require('@wjsc/hold-on');
-const fetch = require('node-fetch); // Or any HTTP client
+// Any HTTP client
+const fetch = require('node-fetch');
 
-const myFunction = () => fetch('https://httpstat.us/200');
+const myFunction = () => fetch('https://httpstat.us/200')
+                         .then(res => res.text());
 const myOptimizedFunction = hold(myFunction, 5000);
 
 // This code will execute the HTTP GET only once
 for(let i = 0; i<50; i++){
-    console.log(myOptimizedFunction());
+    myOptimizedFunction()
+    .then(console.log);
 }
-// If you call the function after 5000 ms, the request will be executed again
+// If you call the function after 5000 ms
+// the request will be executed again
 
 ```
 
