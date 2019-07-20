@@ -75,7 +75,7 @@ const hold = require('@wjsc/hold-on');
 const aws = require('aws-sdk');
 const s3 = new aws.S3();
 
-const myFunction = s3.getObject({ Bucket: 'abc', Key: 'abc.txt' });
+const myFunction = () => s3.getObject({ Bucket: 'abc', Key: 'abc.txt' });
 const myOptimizedFunction = hold(myFunction, 20000);
 
 ```
