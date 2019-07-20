@@ -1,16 +1,14 @@
-const hold = (operation, ms) => {
-    const symbol = Symbol();
-    let value = symbol;
-    return function x(){
-        if(value === symbol) {
-            value = operation();
-            x.interval = setTimeout(() => {
-                value = symbol;
-                delete x.interval;
+const EMPTY = Symbol();
+module.exports = (operation, ms) => {
+    let cache = EMPTY;
+    return function hold(){
+        if(cache === EMPTY) {
+            cache = operation();
+            hold.interval = setTimeout(() => {
+                cache = EMPTY;
+                delete hold.interval;
             }, ms);
         }
-        return value;
+        return cache;
     };
 };
-
-module.exports = hold;
