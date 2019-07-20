@@ -1,6 +1,6 @@
 {
   "name": "@wjsc/hold-on",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Returns a function execution result or a cached version of it",
   "main": "index.js",
   "scripts": {
