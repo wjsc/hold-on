@@ -22,7 +22,7 @@ This package can be used in this scenario
 
 ## How it works
 
-It stores in memory the result of your function for inmediate access, and clears that memory after a specified time.
+It stores in memory the result of your function for immediate access, and clears that memory after a specified time.
 It returns a function that can be used instead your original one.
 
 ```
@@ -95,7 +95,7 @@ Less than 20 lines of code and no dependencies
 #### How to force termination
 
 This function uses setTimeout to clear the internal cache. In some cases, you may need to clear this timer.
-This can be usefull if you are running a script that doesn't end at time, or if you want to terminate a background timer.
+This can be usefull if you are running a script that doesn't end at desired time, or if you want to terminate a background timer.
 
 ```
 const myFunction = () => {};
@@ -105,7 +105,7 @@ clearInterval(myCachedFunction.interval);
 
 #### How to clear the memory cache
 
-Just use your original function!
+Just use the original function!
 
 
 Package name reference: https://www.youtube.com/watch?v=WPnOEiehONQ
