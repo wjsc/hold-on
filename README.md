@@ -64,7 +64,7 @@ const myOptimizedFunction = hold(myFunction, 5000);
 for(let i = 0; i<50; i++){
     console.log(myOptimizedFunction());
 }
-// After 500 ms the request will be executed again
+// If you call the function after 5000 ms, the request will be executed again
 
 ```
 
