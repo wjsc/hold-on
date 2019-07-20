@@ -1,5 +1,5 @@
 ![Current Version](https://img.shields.io/npm/v/@wjsc/hold-on.svg)
-![NPM Minified size](https://img.shields.io/bundlephobia/min/hold-on.svg)
+![NPM Minified size](https://img.shields.io/bundlephobia/min/@wjsc/hold-on.svg)
 ![Github Code Size](https://img.shields.io/github/languages/code-size/wjsc/hold-on.svg)
 ![Downloads/Year](https://img.shields.io/npm/dy/@wjsc/hold-on.svg)
 ![Issues](https://img.shields.io/github/issues/wjsc/hold-on.svg)
