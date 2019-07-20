@@ -1,12 +1,12 @@
-![Current Version](https://img.shields.io/npm/v/hold-on.svg)
+![Current Version](https://img.shields.io/npm/v/@wjsc/hold-on.svg)
 ![NPM Minified size](https://img.shields.io/bundlephobia/min/hold-on.svg)
 ![Github Code Size](https://img.shields.io/github/languages/code-size/wjsc/hold-on.svg)
-![Downloads/Year](https://img.shields.io/npm/dy/hold-on.svg)
+![Downloads/Year](https://img.shields.io/npm/dy/@wjsc/hold-on.svg)
 ![Issues](https://img.shields.io/github/issues/wjsc/hold-on.svg)
 ![License](https://img.shields.io/github/license/wjsc/hold-on.svg)
 ![Contributors](https://img.shields.io/github/contributors/wjsc/hold-on.svg)
 
-[![NPM](https://nodei.co/npm/hold-on.png)](https://nodei.co/npm/hold-on)
+[![NPM](https://nodei.co/npm/@wjsc/hold-on.png)](https://nodei.co/npm/@wjsc/hold-on)
 
 # Hold-on
 
