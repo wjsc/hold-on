@@ -72,15 +72,46 @@ for(let i = 0; i<50; i++){
 
 ```
 
-#### 3. Third example: It's also great to retrieve a file from a remote Storage such as S3
+#### 3. Third example: Cache file from local storage
+
+```
+const hold = require('@wjsc/hold-on');
+const fs = require('fs');
+const myFunction = () => new Promise((resolve, reject) => {
+    fs.readFile('./my-file', 'utf8', (err, data) => 
+        err ? reject(err) : resolve(data)
+    )
+})
+const myOptimizedFunction = hold(myFunction, 5000);
+myOptimizedFunction().then(console.log);
+
+```
+
+#### 4. Fourth example: It's also great to cache a file from a remote Storage such as S3
 
 ```
 const hold = require('@wjsc/hold-on');
 const aws = require('aws-sdk');
+aws.config.update({ 
+    secretAccessKey: 'ABCDE',
+    accessKeyId: '12345'
+
+})
 const s3 = new aws.S3();
 
-const myFunction = () => s3.getObject({ Bucket: 'abc', Key: 'abc.txt' });
-const myOptimizedFunction = hold(myFunction, 20000);
+const myFunction = () => {
+    return new Promise((resolve, reject) => {
+        s3.getObject({
+            Bucket: 'my-bucket',
+            Key: 'my-file'
+        }, (err, data) => {
+            if ( err ) reject(err)
+            else resolve(data.Body.toString())
+        })
+    })
+}
+const myOptimizedFunction = hold(myFunction, 5000);
+myOptimizedFunction().then(console.log);
 
 ```
 
